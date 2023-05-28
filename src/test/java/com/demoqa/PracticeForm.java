@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeForm {
@@ -19,30 +20,41 @@ public class PracticeForm {
         Configuration.savePageSource = false;
     }
 
+    @Test
+    void practiceFormTest() {
 
-        @Test
-        void TestPracticeForm() {
+        // Заполнение формы
+        open("https://demoqa.com/automation-practice-form");
+        $("#firstName").setValue("Kiwi");
+        $("#lastName").setValue("Locus");
+        $("#userEmail").setValue("kiwi@gmail.com");
+        $x("//label[@for='gender-radio-1']").click();
+        $("#userNumber").setValue("7111111112");
+        $("#dateOfBirthInput").click();
+        $x("//select[contains(@class,'month-select')]").selectOption("October");
+        $x("//select[contains(@class,'year-select')]").selectOption("1991");
+        $x("//div[contains(@class,'day--020')]").click();
+        $("#subjectsInput").setValue("M");
+        $("#react-select-2-option-0").click();
+        $("#react-select-3-input").setValue("NCR").pressEnter();
+        $("#react-select-4-input").setValue("Noida").pressEnter();
+        $x("//label[@for='hobbies-checkbox-1']").click();
+        $("#currentAddress").setValue("Moscow, Red street 4");
+        $("#uploadPicture").uploadFile(new File("/Users/sergeyzubakha/IdeaProjects/demoqaLesson/src/test/resources/qa.png"));
+        $("#submit").click();
 
-            open("https://demoqa.com/automation-practice-form");
-            $("#firstName").setValue("Kiwi");
-            $("#lastName").setValue("Locus");
-            $("#userEmail").setValue("kiwi@gmail.com");
-            $x("//label[@for='gender-radio-1']").click();
-            $("#userNumber").setValue("7111111112");
-            $("#dateOfBirthInput").click();
-            $x("//select[@class='react-datepicker__month-select']").selectOption("October");
-            $x("//select[@class='react-datepicker__year-select']").selectOption("1991");
-            $x("//div[@class='react-datepicker__day react-datepicker__day--020 react-datepicker__day--weekend']").click();
-            $("#subjectsInput").setValue("M");
-            $("#react-select-2-option-0").click();
-            $x("//div[@class=' css-yk16xz-control']/div[@class=' css-1hwfws3']/div[@class=' css-1wa3eu0-placeholder']").click();
-            $("#react-select-3-option-0").click();
-            $x("//div[@class=' css-yk16xz-control']/div[@class=' css-1hwfws3']/div[@class=' css-1wa3eu0-placeholder']").click();
-            $("#react-select-4-option-0").click();
-            $x("//label[@for='hobbies-checkbox-1']").click();
-            $("#currentAddress").setValue("Moscow, Red street 4");
-            $("#uploadPicture").uploadFile(new File("/Users/sergeyzubakha/IdeaProjects/demoqaLesson/src/test/data/1c4c8d80-453e-11eb-98cf-803f3a2e6973.png"));
+        //Проверка формы
+        $(".table-responsive").shouldHave(text("Kiwi Locus"));
+        $(".table-responsive").shouldHave(text("kiwi@gmail.com"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("7111111112"));
+        $(".table-responsive").shouldHave(text("20 October,1991"));
+        $(".table-responsive").shouldHave(text("Maths"));
+        $(".table-responsive").shouldHave(text("Sports"));
+        $(".table-responsive").shouldHave(text("qa.png"));
+        $(".table-responsive").shouldHave(text("Moscow, Red street 4"));
+        $(".table-responsive").shouldHave(text("NCR Noida"));
 
-        }
     }
+}
 
