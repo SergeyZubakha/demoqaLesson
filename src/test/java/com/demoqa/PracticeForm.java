@@ -38,7 +38,7 @@ public class PracticeForm {
         $("#react-select-4-input").setValue("Noida").pressEnter();
         $x("//label[@for='hobbies-checkbox-1']").click();
         $("#currentAddress").setValue("Moscow, Red street 4");
-        $("#uploadPicture").uploadFromClasspath("qa.png");;
+        $("#uploadPicture").uploadFromClasspath("qa.png");
         $("#submit").click();
 
         //Проверка формы
