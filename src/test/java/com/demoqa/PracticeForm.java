@@ -1,11 +1,7 @@
 package com.demoqa;
-
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -24,7 +20,9 @@ public class PracticeForm {
     void practiceFormTest() {
 
         // Заполнение формы
-        open("https://demoqa.com/automation-practice-form");
+        open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         $("#firstName").setValue("Kiwi");
         $("#lastName").setValue("Locus");
         $("#userEmail").setValue("kiwi@gmail.com");
@@ -40,7 +38,7 @@ public class PracticeForm {
         $("#react-select-4-input").setValue("Noida").pressEnter();
         $x("//label[@for='hobbies-checkbox-1']").click();
         $("#currentAddress").setValue("Moscow, Red street 4");
-        $("#uploadPicture").uploadFile(new File("/Users/sergeyzubakha/IdeaProjects/demoqaLesson/src/test/resources/qa.png"));
+        $("#uploadPicture").uploadFromClasspath("qa.png");;
         $("#submit").click();
 
         //Проверка формы
