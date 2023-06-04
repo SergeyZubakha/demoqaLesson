@@ -10,9 +10,9 @@ public class PracticeForm {
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.screenshots = false;
+        Configuration.holdBrowserOpen = true; //не закрываем браузер после прогона теста
+        Configuration.pageLoadStrategy = "eager"; //не дожидаемся полной загрузки сайта
+        Configuration.screenshots = false; //не сохраняем картинки после прогона
         Configuration.savePageSource = false;
     }
 
